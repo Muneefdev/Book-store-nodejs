@@ -1,0 +1,18 @@
+{
+	"sqltools.connections": [
+		{
+			"mysqlOptions": {
+				"authProtocol": "default",
+				"enableSsl": "Disabled"
+			},
+			"previewLimit": 50,
+			"server": "book-store-db.c29bsmrt15cv.ap-southeast-1.rds.amazonaws.com",
+			"port": 3306,
+			"driver": "MySQL",
+			"name": "book-store",
+			"database": "book-store-db",
+			"username": "admin",
+			"askForPassword": true
+		}
+	]
+}

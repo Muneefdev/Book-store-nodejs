@@ -1,0 +1,35 @@
+<%- include("includes/header.ejs") -%>
+
+<%- include("includes/navbar.ejs") -%>
+
+<div class="container mt-5">
+   <h1 class="text-center mb-4">Add a New Book</h1>
+   <!-- Bootstrap Form -->
+   <form action="/user/add-book" method="POST">
+      <div class="row justify-content-center">
+         <div class="col-md-4">
+            <div class="mb-3">
+               <label for="title" class="form-label">Book Title</label>
+               <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="mb-3">
+               <label for="author" class="form-label">Author</label>
+               <input type="text" class="form-control" id="author" name="author" required>
+            </div>
+         </div>
+         <div class="col-md-8">
+            <div class="mb-3">
+               <label for="image" class="form-label">Image</label>
+               <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+            </div>
+         </div>
+         <div class="col-md-8">
+            <button type="submit" class="btn btn-primary">Add Book</button>
+         </div>
+      </div>
+   </form>
+</div>
+
+<%- include("includes/footer.ejs") -%>
