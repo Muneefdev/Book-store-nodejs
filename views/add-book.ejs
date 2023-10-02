@@ -2,34 +2,47 @@
 
 <%- include("includes/navbar.ejs") -%>
 
-<div class="container mt-5">
-   <h1 class="text-center mb-4">Add a New Book</h1>
-   <!-- Bootstrap Form -->
-   <form action="/user/add-book" method="POST">
-      <div class="row justify-content-center">
-         <div class="col-md-4">
-            <div class="mb-3">
-               <label for="title" class="form-label">Book Title</label>
-               <input type="text" class="form-control" id="title" name="title" required>
+<main>
+   <div class="container mt-5">
+      <h1 class="text-center mb-4 fw-bold">Add a New Book</h1>
+      <!-- Bootstrap Form -->
+      <form action="/user/add-book" method="POST" enctype="multipart/form-data" novalidate>
+         <div class="row justify-content-center">
+            <div class="col-md-6">
+               <div class="mb-3">
+                  <label for="title" class="form-label">Book Title</label>
+                  <input type="text" class="form-control" id="title" name="title" required>
+               </div>
+               <div class="mb-3">
+                  <label for="author" class="form-label">Author</label>
+                  <input type="text" class="form-control" id="author" name="author" required>
+               </div>
+               <div class="mb-3">
+                  <label for="category" class="form-label">Category</label>
+                  <select class="form-select" id="category" name="category" required>
+                     <option value="" disabled selected>Select a category</option>
+                     <option value="Fantasy">Fantasy</option>
+                     <option value="Mystery">Mystery</option>
+                     <option value="Science Fiction">Science Fiction</option>
+                     <option value="Romance">Romance</option>
+                     <option value="Thriller">Thriller</option>
+                  </select>
+               </div>
+               <div class="mb-3">
+                  <label for="image" class="form-label">Image</label>
+                  <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+               </div>
+               <div class="mb-3">
+                  <label for="description" class="form-label">Description</label>
+                  <textarea class="form-control" id="description" name="description" rows="4"></textarea>
+               </div>
+               <div class="d-grid gap-2">
+                  <button type="submit" class="btn btn-primary">Add Book</button>
+               </div>
             </div>
          </div>
-         <div class="col-md-4">
-            <div class="mb-3">
-               <label for="author" class="form-label">Author</label>
-               <input type="text" class="form-control" id="author" name="author" required>
-            </div>
-         </div>
-         <div class="col-md-8">
-            <div class="mb-3">
-               <label for="image" class="form-label">Image</label>
-               <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
-            </div>
-         </div>
-         <div class="col-md-8">
-            <button type="submit" class="btn btn-primary">Add Book</button>
-         </div>
-      </div>
-   </form>
-</div>
+      </form>
+   </div>
+</main>
 
 <%- include("includes/footer.ejs") -%>

@@ -1,11 +1,20 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-   <div class="container-fluid">
-      <a class="navbar-brand" href="/">STORE</a>
+   <div class="container">
+      <div class="d-flex align-items-center gap-2">
+         <div>
+            <i class="bi bi-shop-window"></i>
+         </div>
+         <div>
+            <a class="navbar-brand fw-bold" href="/">STORE</a>
+         </div>
+      </div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+      <!-- nav links -->
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
          <ul class="navbar-nav">
             <li class="nav-item">
                <a class="nav-link <%= path === '/' ? "active" : "" %>" aria-current="page" href="/">Home</a>
@@ -32,6 +41,15 @@
                <a class="nav-link <%= path === '/auth/logout' ? "active" : "" %>" href="/auth/logout">Logout</a>
             </li>
             <% } %>
+            <% if (isAuthenticated) { %>
+            <li class="nav-item ">
+               <a class="nav-link <%= path === '/cart' ? "active" : "" %>" href="/cart">
+                  Cart
+                  <i class="bi bi-bag-plus-fill"></i>
+               </a>
+            </li>
+            <% } %>
+
          </ul>
       </div>
    </div>

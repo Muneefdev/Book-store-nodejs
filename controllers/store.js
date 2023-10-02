@@ -1,15 +1,51 @@
+import Book from "../models/book.js";
+
 function getHomePage(req, res, next) {
-	res.render("home", {
-		path: "/",
+	try {
+		res.render("home", {
+			path: "/",
+			imageUrl: null,
+		});
+	} catch (error) {
+		next(error);
+	}
+}
+
+async function getBooks(req, res, next) {
+	try {
+		const books = await Book.getAllBooks();
+
+		res.render("books", {
+			path: "/books",
+			books: books,
+		});
+	} catch (error) {
+		next(error);
+	}
+}
+
+function getCart(req, res, next) {
+	res.render("cart", {
+		path: "/cart",
+		books: [],
 	});
 }
 
-function getBooks(req, res, next) {}
+async function getBookById(req, res, next) {
+	const bookId = req.params.bookId;
+	const existingBook = await Book.getBookById(bookId);
 
-function getBookById(req, res, next) {}
+	console.log(existingBook);
+
+	res.render("book-detail", {
+		path: "/books",
+		book: existingBook,
+	});
+}
 
 export default {
 	getHomePage,
 	getBooks,
 	getBookById,
+	getCart,
 };

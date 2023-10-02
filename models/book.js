@@ -1,4 +1,4 @@
-import prismadb from "../utils/prismadb";
+import prismadb from "../utils/prismadb.js";
 
 const Book = {
 	getAllBooks() {
@@ -6,9 +6,22 @@ const Book = {
 	},
 
 	getBookById(id) {
-		return prismadb.book.findUnique({
+		return prismadb.book.findFirst({
 			where: {
-				id: parseInt(id),
+				id: id,
+			},
+		});
+	},
+
+	createBook(title, author, category, description, imageUrl, userId) {
+		return prismadb.book.create({
+			data: {
+				userId,
+				title,
+				author,
+				category,
+				description,
+				imageUrl,
 			},
 		});
 	},
