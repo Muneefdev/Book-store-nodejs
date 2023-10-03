@@ -9,7 +9,7 @@ router.get("/", storeController.getHomePage);
 
 router.get("/books", storeController.getBooks);
 
-router.get("/books/:bookId", storeController.getBookById);
+router.get("/books/:bookId", storeController.getBookDetail);
 
 router.get("/cart", isAuth, storeController.getCart);
 

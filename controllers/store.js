@@ -31,21 +31,20 @@ function getCart(req, res, next) {
 	});
 }
 
-async function getBookById(req, res, next) {
+async function getBookDetail(req, res, next) {
 	const bookId = req.params.bookId;
 	const existingBook = await Book.getBookById(bookId);
-
-	console.log(existingBook);
 
 	res.render("book-detail", {
 		path: "/books",
 		book: existingBook,
+		userId: req.session.user ? req.session.user.id : null,
 	});
 }
 
 export default {
 	getHomePage,
 	getBooks,
-	getBookById,
+	getBookDetail,
 	getCart,
 };

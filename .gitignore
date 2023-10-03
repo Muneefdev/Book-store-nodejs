@@ -7,9 +7,6 @@ npm-debug.log*
 # Ignore node_modules directory
 node_modules/
 
-# Ignore package-lock.json for npm
-package-lock.json
-
 # Optional: Ignore yarn.lock for Yarn
 yarn.lock
 

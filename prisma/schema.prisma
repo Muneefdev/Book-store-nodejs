@@ -28,6 +28,7 @@ model Book {
   author      String
   description String
   imageUrl    String
+  price       Decimal  @default(0)
   category    String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

@@ -35,7 +35,9 @@ router.get("/add-book", userController.getAddBook);
 
 router.post("/add-book", upload.single("image"), userController.postAddBook);
 
-router.post("/edit-book/:bookId", () => {});
+router.get("/edit-book", userController.getEditBook);
+
+router.post("/edit-book/:bookId", userController.postEditBook);
 
 router.post("/delete-book", () => {});
 

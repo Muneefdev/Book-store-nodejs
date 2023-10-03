@@ -1,0 +1,61 @@
+<%- include("includes/header.ejs") -%>
+
+<%- include("includes/navbar.ejs") -%>
+
+<main>
+   <div class="container mt-5">
+      <h1 class="text-center mb-4 fw-bold">Edit Book</h1>
+      <!-- Bootstrap Form -->
+      <form action="/user/edit-book/<%= book.id %>" method="POST">
+         <div class="row justify-content-center">
+            <div class="col-md-6">
+               <div class="mb-3">
+                  <label for="title" class="form-label">Book Title</label>
+                  <input type="text" value="<%= book ? book.title : "" %>" class="form-control" id="title" name="title"
+                     required>
+               </div>
+               <div class="mb-3">
+                  <label for="author" class="form-label">Author</label>
+                  <input type="text" value="<%= book ? book.author : "" %>" class="form-control" id="author"
+                     name="author" required>
+               </div>
+               <div class="mb-3">
+                  <label for="category" class="form-label">Category</label>
+                  <select class="form-select" id="category" name="category" required>
+                     <option value="" disabled>Select a category</option>
+                     <option value="Fantasy" <%= book.category === "Fantasy" ? 'selected="selected"' : '' %>>Fantasy
+                     </option>
+                     <option value="Mystery" <%= book.category === "Mystery" ? 'selected="selected"' : '' %>>Mystery
+                     </option>
+                     <option value="Science Fiction"
+                        <%= book.category === "Science Fiction" ? 'selected="selected"' : '' %>>Science
+                        Fiction</option>
+                     <option value="Romance" <%= book.category === "Romance" ? 'selected="selected"' : '' %>>Romance
+                     </option>
+                     <option value="Self Improvement"
+                        <%= book.category === "Self Improvement" ? 'selected="selected"' : '' %>>Self
+                        Improvement</option>
+                     <option value="Thriller" <%= book.category === "Thriller" ? 'selected="selected"' : '' %>>Thriller
+                     </option>
+                  </select>
+               </div>
+               <div class="mb-3">
+                  <label for="price" class="form-label">Price</label>
+                  <input type="number" value="<%= book ? book.price : "" %>" class="form-control" id="price"
+                     name="price" required>
+               </div>
+               <div class="mb-3">
+                  <label for="description" class="form-label">Description</label>
+                  <textarea class="form-control" id="description" name="description"
+                     rows="4"><%= book ? book.description : "" %></textarea>
+               </div>
+               <div class="d-grid gap-2">
+                  <button type="submit" class="btn btn-primary">Update Book</button>
+               </div>
+            </div>
+         </div>
+      </form>
+   </div>
+</main>
+
+<%- include("includes/footer.ejs") -%>

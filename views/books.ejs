@@ -16,12 +16,12 @@
          <% books.forEach(book => { %>
          <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
             <div class="card">
-               <img src="<%= book.imageUrl %>" class="card-img-top" alt="<%= book.name %>">
+               <img src="<%= book.imageUrl %>" class="card-img-top" alt="<%= book.title %>">
                <div class="card-body">
-                  <h5 class="card-title"><%= book.name %></h5>
+                  <h5 class="card-title"><%= book.title %></h5>
                   <h6 class="card-subtitle"><%= book.author %></h6>
-                  <h6 class="card-subtitle"><%= book.category %></h6>
-                  <p class="card-text"><%= book.description %></p>
+                  <p class="card-subtitle mt-1"><%= book.category %></p>
+                  <p class="card-text">RM <%= book.price %></p>
                   <a href="/books/<%= book.id %>" class="btn btn-primary">Details</a>
                   <a href="#" class="btn btn-success">Add to Cart</a>
                </div>
