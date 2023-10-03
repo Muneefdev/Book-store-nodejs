@@ -1,5 +1,5 @@
 import Book from "../models/book.js";
-import { s3upload } from "../utils/s3Service.js";
+import { s3deleteImage, s3upload } from "../utils/s3Service.js";
 
 function getAddBook(req, res, next) {
 	res.render("add-book", {
@@ -73,9 +73,30 @@ async function postEditBook(req, res, next) {
 	}
 }
 
+async function getDeleteBook(req, res, next) {
+	try {
+		const bookId = req.params.bookId;
+		const existingBook = await Book.getBookById(bookId);
+
+		// delete image from s3
+		const splitImageUrl = existingBook.imageUrl.split("/");
+		const objectKey = `uploads/${splitImageUrl[splitImageUrl.length - 1]}`;
+
+		// delete book from db
+		await Book.deleteBook(bookId);
+
+		await s3deleteImage(objectKey);
+
+		res.redirect("/books");
+	} catch (error) {
+		next(error);
+	}
+}
+
 export default {
 	getAddBook,
 	postAddBook,
 	postEditBook,
 	getEditBook,
+	getDeleteBook,
 };

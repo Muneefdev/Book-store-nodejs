@@ -39,6 +39,6 @@ router.get("/edit-book", userController.getEditBook);
 
 router.post("/edit-book/:bookId", userController.postEditBook);
 
-router.post("/delete-book", () => {});
+router.get("/delete-book/:bookId", userController.getDeleteBook);
 
 export default router;

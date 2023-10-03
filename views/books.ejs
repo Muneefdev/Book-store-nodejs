@@ -13,6 +13,14 @@
 
    <div>
       <div class="row">
+         <% if (books.length === 0) { %>
+         <div class=" col-lg-6 text-center mx-auto">
+            <div class="alert alert-info fw-bold" role="alert">
+               Sorry No Books Found!
+            </div>
+         </div>
+
+         <% } %>
          <% books.forEach(book => { %>
          <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
             <div class="card">
