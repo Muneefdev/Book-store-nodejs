@@ -1,5 +1,6 @@
 import Book from "../models/book.js";
 import Cart from "../models/cart.js";
+import stripe from "../utils/stripe.js";
 
 function getHomePage(req, res, next) {
 	try {
@@ -40,7 +41,6 @@ async function postAddToCart(req, res, next) {
 		const bookId = req.params.bookId;
 		const userId = req.session.user.id;
 
-		// const book = await Book.getBookById(bookId);
 		await Cart.addItemToCart(userId, bookId);
 
 		const books = await Cart.getCartItems(userId);
@@ -76,6 +76,47 @@ async function getClearCart(req, res, next) {
 	}
 }
 
+async function getCheckout(req, res, next) {
+	try {
+		const userId = req.session.user.id;
+		const books = await Cart.getCartItems(userId);
+
+		let total = 0;
+		books.forEach((book) => {
+			total += parseInt(book.price);
+		});
+
+		let session = stripe.checkout.sessions.create({
+			line_items: books.map((book) => {
+				return {
+					price_data: {
+						currency: "usd",
+						unit_amount: book.price * 100,
+						product_data: {
+							name: book.title,
+							description: book.description,
+						},
+					},
+					quantity: 1,
+				};
+			}),
+			mode: "payment",
+			success_url:
+				req.protocol + "://" + req.get("host") + "/checkout/success",
+			cancel_url:
+				req.protocol + "://" + req.get("host") + "/checkout/cancel",
+		});
+
+		res.render("checkout", {
+			path: "/checkout",
+			total,
+			sessionId: session.id,
+		});
+	} catch (error) {
+		next(error);
+	}
+}
+
 export default {
 	getHomePage,
 	getBooks,
@@ -83,4 +124,5 @@ export default {
 	getCart,
 	postAddToCart,
 	getClearCart,
+	getCheckout,
 };

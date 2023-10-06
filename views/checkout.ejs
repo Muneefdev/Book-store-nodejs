@@ -1,0 +1,22 @@
+<%- include("includes/header.ejs") -%>
+
+<%- include("includes/navbar.ejs") -%>
+
+<main class="text-center mt-5">
+   <p class="display-5">Your going to check out and pay with Strip!</p>
+   <p class="display-6 fw-bold">Total: <%= total %></p>
+   <a href="" class="btn btn-success" id="order-btn">Order Now!</a>
+   <script src="https://js.stripe.com/v3/"></script>
+   <script>
+      let stripe = Stripe('pk_test_51NyA8wIBIsFJ4Nlezrz71OyD5MbLDXSA2BMg4EfmUFo6SLeJ3y41h2tfaTm6zbVTdJqETudn6EjxgjPeRvTL6V0q000CYx46do');
+      let orderBtn = document.getElementById('order-btn');
+      orderBtn.addEventListener('click', function () {
+         stripe.redirectToCheckout({
+            sessionId: '<%= sessionId %>',
+         });
+      })
+   </script>
+</main>
+
+
+<%- include("includes/footer.ejs") -%>
