@@ -1,4 +1,4 @@
-import User from "../models/User.js";
+import User from "../models/user.js";
 import Cart from "../models/cart.js";
 
 import bcryptjs from "bcryptjs";
