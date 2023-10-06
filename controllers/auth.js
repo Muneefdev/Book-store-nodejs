@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import Cart from "../models/cart.js";
 
 import bcryptjs from "bcryptjs";
 
@@ -69,7 +70,8 @@ async function postSignup(req, res, next) {
 			name,
 		};
 
-		await User.createUser(newUser);
+		const createdUser = await User.createUser(newUser); // create user
+		Cart.createCartForUser(createdUser.id); // create cart for the user
 
 		res.redirect("/auth/login");
 	} catch (error) {

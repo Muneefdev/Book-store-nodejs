@@ -8,7 +8,7 @@ function getAddBook(req, res, next) {
 	});
 }
 
-async function postAddBook(req, res, next) {
+async function postAddBook(req, res) {
 	try {
 		const { title, author, category, description, price } = req.body;
 		const user = req.session.user;
@@ -50,14 +50,7 @@ async function postEditBook(req, res, next) {
 	try {
 		const { title, author, category, price, description } = req.body;
 		const bookId = req.params.bookId;
-		console.log({
-			title,
-			author,
-			category,
-			price,
-			description,
-			bookId,
-		});
+
 		await Book.updateBook(
 			title,
 			author,
@@ -93,10 +86,25 @@ async function getDeleteBook(req, res, next) {
 	}
 }
 
+async function postAddToCart(req, res, next) {
+	try {
+		const bookId = req.params.bookId;
+		const user = req.session.user;
+
+		// res.render("cart", {
+		// 	path: "/cart",
+		// 	bookId: [],
+		// });
+	} catch (error) {
+		next(error);
+	}
+}
+
 export default {
 	getAddBook,
 	postAddBook,
 	postEditBook,
 	getEditBook,
 	getDeleteBook,
+	postAddToCart,
 };

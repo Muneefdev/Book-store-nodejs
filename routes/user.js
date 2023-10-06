@@ -3,7 +3,6 @@ import express from "express";
 import multer from "multer";
 
 import userController from "../controllers/user.js";
-import { isAuth } from "../middleware/isAuth.js";
 
 const router = express.Router();
 

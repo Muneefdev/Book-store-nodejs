@@ -2,6 +2,39 @@
 
 <%- include("includes/navbar.ejs") -%>
 
-<p>You cart</p>
+<main class="container my-5">
+   <% if (books.length === 0) { %>
+   <div class="text-center mt-5">
+      <p class="display-5">Your cart is empty!</p>
+   </div>
+   <% } else { %>
+   <div class="row">
+      <% let total = 0; %>
+      <% books.forEach(book => { %>
+      <div class="col-md-3 mb-4">
+         <div class="card">
+            <img src="<%= book.imageUrl %>" class="card-img-top" alt="<%= book.title %>">
+            <div class="card-body">
+               <h5 class="card-title"><%= book.title %></h5>
+               <p class="card-text"><%= book.author %></p>
+               <p class="card-text">$<%= book.price.toFixed(2) %></p>
+            </div>
+         </div>
+      </div>
+      <% total += parseFloat(book.price); %>
+      <% }) %>
+   </div>
+   <div class="text-center mt-4">
+      <h4>Total: $<%= total.toFixed(2) %></h4>
+      <div class="mt-5">
+         <a href="/checkout" class="btn btn-primary mx-2">Checkout</a>
+         <a href="/clear-cart" class="btn btn-danger mx-2">Clear Cart</a>
+      </div>
+   </div>
+   <% } %>
+</main>
+
+
+
 
 <%- include("includes/footer.ejs") -%>

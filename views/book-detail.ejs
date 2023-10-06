@@ -20,7 +20,7 @@
             <p class="lead"><%= book.description %></p>
             <p class="h4">Price: RM <%= book.price %></p>
             <% if (userId !== book.userId) { %>
-            <button class="btn btn-success mt-5">Add to Cart</button>
+            <a href="/add-to-cart/<%= book.id %>" class="btn btn-success mt-5">Add to Cart</a>
             <% } %>
             <a href="/books" class="btn btn-secondary mt-5">Previous Page</a>
             <% if (userId === book.userId) { %>

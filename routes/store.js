@@ -13,4 +13,8 @@ router.get("/books/:bookId", storeController.getBookDetail);
 
 router.get("/cart", isAuth, storeController.getCart);
 
+router.get("/add-to-cart/:bookId", storeController.postAddToCart);
+
+router.get("/clear-cart", storeController.getClearCart);
+
 export default router;

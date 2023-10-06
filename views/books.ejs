@@ -15,7 +15,7 @@
       <div class="row">
          <% if (books.length === 0) { %>
          <div class=" col-lg-6 text-center mx-auto">
-            <div class="alert alert-info fw-bold" role="alert">
+            <div class="alert alert-info fw-bold role=" alert">
                Sorry No Books Found!
             </div>
          </div>
@@ -31,14 +31,12 @@
                   <p class="card-subtitle mt-1"><%= book.category %></p>
                   <p class="card-text">RM <%= book.price %></p>
                   <a href="/books/<%= book.id %>" class="btn btn-primary">Details</a>
-                  <a href="#" class="btn btn-success">Add to Cart</a>
                </div>
             </div>
          </div>
          <% }) %>
       </div>
    </div>
-
 </main>
 
 

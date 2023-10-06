@@ -1,4 +1,5 @@
 import Book from "../models/book.js";
+import Cart from "../models/cart.js";
 
 function getHomePage(req, res, next) {
 	try {
@@ -24,11 +25,33 @@ async function getBooks(req, res, next) {
 	}
 }
 
-function getCart(req, res, next) {
+async function getCart(req, res, next) {
+	const userId = req.session.user.id;
+	const books = await Cart.getCartItems(userId);
+
 	res.render("cart", {
 		path: "/cart",
-		books: [],
+		books,
 	});
+}
+
+async function postAddToCart(req, res, next) {
+	try {
+		const bookId = req.params.bookId;
+		const userId = req.session.user.id;
+
+		// const book = await Book.getBookById(bookId);
+		await Cart.addItemToCart(userId, bookId);
+
+		const books = await Cart.getCartItems(userId);
+
+		res.render("cart", {
+			path: "/cart",
+			books,
+		});
+	} catch (error) {
+		next(error);
+	}
 }
 
 async function getBookDetail(req, res, next) {
@@ -42,9 +65,22 @@ async function getBookDetail(req, res, next) {
 	});
 }
 
+async function getClearCart(req, res, next) {
+	try {
+		const userId = req.session.user.id;
+		await Cart.clearCart(userId);
+
+		res.redirect("/cart");
+	} catch (error) {
+		next(error);
+	}
+}
+
 export default {
 	getHomePage,
 	getBooks,
 	getBookDetail,
 	getCart,
+	postAddToCart,
+	getClearCart,
 };
