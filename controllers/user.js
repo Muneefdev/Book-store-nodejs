@@ -1,4 +1,5 @@
 import Book from "../models/book.js";
+import prismadb from "../utils/prismadb.js";
 import { s3deleteImage, s3upload } from "../utils/s3Service.js";
 
 function getAddBook(req, res, next) {
@@ -90,11 +91,7 @@ async function postAddToCart(req, res, next) {
 	try {
 		const bookId = req.params.bookId;
 		const user = req.session.user;
-
-		// res.render("cart", {
-		// 	path: "/cart",
-		// 	bookId: [],
-		// });
+		
 	} catch (error) {
 		next(error);
 	}

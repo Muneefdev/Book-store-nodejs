@@ -62,6 +62,7 @@ async function postSignup(req, res, next) {
 			return res.redirect("/auth/signup");
 		}
 
+		//hash password
 		const hashedPassword = await bcryptjs.hash(password, 12);
 
 		const newUser = {

@@ -33,12 +33,7 @@ const upload = multer({ storage, fileFilter });
 
 router.get("/add-book", isAuth, userController.getAddBook);
 
-router.post(
-	"/add-book",
-	isAuth,
-	upload.single("image"),
-	userController.postAddBook
-);
+router.post("/add-book", isAuth, upload.single("image"), userController.postAddBook);
 
 router.get("/edit-book", isAuth, userController.getEditBook);
 

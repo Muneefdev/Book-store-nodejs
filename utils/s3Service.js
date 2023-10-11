@@ -5,6 +5,7 @@ import {
 } from "@aws-sdk/client-s3";
 import { v4 as uuid } from "uuid";
 
+
 export async function s3upload(file) {
 	const s3 = new S3Client();
 
@@ -19,6 +20,8 @@ export async function s3upload(file) {
 	return `${process.env.BASE_IMAGE_URL}/${params.Key}`;
 }
 
+
+// delete image from s3
 export async function s3deleteImage(key) {
 	const s3 = new S3Client();
 

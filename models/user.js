@@ -12,7 +12,7 @@ const User = {
 	},
 
 	getUserByEmail(email) {
-		return prismadb.user.findUnique({
+		return prismadb.user.findFirst({
 			where: {
 				email,
 			},
